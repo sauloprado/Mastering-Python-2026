@@ -1,0 +1,16 @@
+Frente	Verso
+O que a PEP 703 propõe sobre o GIL?	Tornar o GIL opcional em builds de CPython (free-threading), permitindo paralelismo real em threads onde suportado, com impacto em extensões C e compatibilidade.
+Em uma frase: o que é a PEP 779?	Critérios para o Python free-threaded deixar de ser experimental e ser considerado oficialmente suportado (estabilidade, manutenção, performance, ecossistema).
+O que a PEP 734 adiciona ao stdlib?	API concurrent.interpreters: múltiplos interpretadores no mesmo processo, filas e executor para isolamento e paralelismo complementar ao modelo clássico.
+O que é t-string (PEP 750)?	Literal t"..." que vira objeto Template (não str), permitindo processar/validar interpolações antes da string final.
+Diferença f-string vs t-string?	f-string já produz str; t-string expõe Template para hook de processamento seguro ou customizado.
+O que é Copy-on-Write no Pandas?	Adia cópias físicas: compartilha buffers até escrita, melhorando performance e previsibilidade em muitos fluxos.
+Por que Polars costuma ser rápido?	Core Rust, multithreading, lazy API com otimização de query antes da execução.
+Polars é sempre 10× mais rápido que Pandas?	Não; depende de workload, tamanho, operações e uso de lazy; medir no seu caso.
+Para que serve cuDF (RAPIDS)?	DataFrame acelerado por GPU NVIDIA para workloads massivos quando GPU/stack fazem sentido.
+Papel do Smolagents em projetos?	Agentes leves com ferramentas e raciocínio em passos, incluindo geração de código.
+Para que MarkItDown em LLM pipelines?	Converter PDF/Office/HTML etc. em Markdown para RAG e ingestão de texto.
+O que Temporal agrega vs fila simples?	Workflows duráveis: estado sobrevive a falhas, retries e timers — orquestração de processos longos.
+NiceGUI vs Streamlit (ideia geral)?	Streamlit: apps dados re-run rápido; NiceGUI: UI reativa com stack web mais flexível sob Python.
+Por que PySide6 + QML?	Desktop nativo Qt com UI declarativa (QML) e lógica Python para apps profissionais offline.
+Checklist mínimo para benchmark público?	Versões fixas, hardware, tamanho dos dados, warm-up, repetições, mediana/pctis e script reproduzível.
