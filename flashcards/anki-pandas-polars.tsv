@@ -1,0 +1,20 @@
+Frente	Verso
+Base colunar típica do Pandas 2.x?	NumPy + tipos PyArrow-backed onde configurado (ex.: string[pyarrow]).
+Base nativa do Polars?	Apache Arrow; execução vetorizada e planner (lazy).
+Como adiar execução no Polars?	scan_* → LazyFrame → encadear ops → .collect() ou sink_* (streaming).
+O que CoW evita no Pandas?	Cópias defensivas desnecessárias; compartilha buffers até escrita.
+Por que apply(axis=1) no Pandas costuma ser lento?	Loop Python por linha fora do núcleo vetorizado.
+O que são expressions pl.col() no Polars?	Transformações declarativas otimizáveis pelo engine.
+null (Polars) vs NaN (Pandas/NumPy) — ideia?	Polars separa ausência (null) com semântica clara; NaN misturou missing e inválido em float.
+Quando preferir Pandas?	sklearn, legado, libs que exigem DataFrame pandas, time já treinado.
+Quando preferir Polars?	ETL grande, muitos filtros/joins/agregações, lazy + paralelismo in-process.
+Polars substitui SQL/warehouse?	Não automaticamente; big data enterprise muitas vezes SQL/Spark/DuckDB.
+O que é cuDF?	DataFrame estilo pandas em GPU NVIDIA (RAPIDS).
+Pré-requisito principal do cuDF?	GPU NVIDIA + stack CUDA compatível; sem GPU use Polars/Pandas.
+Armadilha comum em benchmark Pandas vs Polars?	Eager+cópias vs lazy otimizado; I/O não isolado; sem warm-up.
+Leitura Parquet eficiente — Polars?	Preferir pl.scan_parquet (lazy) em pipelines grandes.
+Estilo de join: Pandas vs Polars?	pd.merge vs .join; cuidado com chaves duplicadas e tipos.
+Strings no Pandas 2+: tendência?	string[pyarrow] em vez de object quando possível.
+Por que collect() trava no Jupyter?	Executa o plano lazy; antes só montava o grafo — usar fetch/head para debug.
+Estratégia híbrida Polars + Pandas?	Processar em Polars; to_pandas() só na borda com libs legacy.
+O que documentar em benchmark público?	Versões, hardware, tamanho, op isolada, repetições, mediana, script.
